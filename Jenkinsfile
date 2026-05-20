@@ -5,7 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/nigamshastri-0770/automation-exercise-framework.git'
+                git branch: 'main',
+                url: 'https://github.com/nigamshastri-0770/automation-exercise-framework.git'
             }
         }
 
