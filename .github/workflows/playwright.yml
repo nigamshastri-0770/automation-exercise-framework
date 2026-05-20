@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests CI
 
 on:
   push:
@@ -11,19 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      # 1. Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright browsers
+      # 4. Install Playwright browsers
+      - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run tests
+      # 5. Run tests
+      - name: Run Playwright tests
         run: npx playwright test
+
+      # 6. Upload HTML report (optional but useful)
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
