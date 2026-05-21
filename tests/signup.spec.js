@@ -1,9 +1,14 @@
-import { test } from '@playwright/test';
-import { SignupPage } from '../pages/SignupPage.js';
+import { defineConfig } from '@playwright/test';
 
-test('Signup flow', async ({ page }) => {
-  await page.goto('/login');
+export default defineConfig({
+  timeout: 60000,
+  fullyParallel: false,
+  workers: 1,
 
-  const signup = new SignupPage(page);
-  await signup.signup('Test User', 'test@test.com');
+  use: {
+    baseURL: 'https://automationexercise.com',
+    headless: true,
+    ignoreHTTPSErrors: true,
+    screenshot: 'only-on-failure'
+  }
 });

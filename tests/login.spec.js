@@ -1,9 +1,12 @@
-import { test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage.js';
+import { test, expect } from '@playwright/test';
 
 test('Login flow', async ({ page }) => {
-  await page.goto('/login');
+  await page.goto('https://automationexercise.com/login', {
+    waitUntil: 'domcontentloaded'
+  });
 
-  const login = new LoginPage(page);
-  await login.login('test@test.com', 'password');
+  await page.locator('input[type="email"]').first().fill('test@test.com');
+  await page.locator('input[type="password"]').fill('password');
+
+  await page.locator('button[data-qa="login-button"]').click();
 });
