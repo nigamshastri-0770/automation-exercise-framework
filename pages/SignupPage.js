@@ -7,8 +7,13 @@ export class SignupPage {
   }
 
   async signup(name, email) {
+    await this.page.waitForLoadState('networkidle');
+  
+    await this.name.waitFor({ state: 'visible' });
     await this.name.fill(name);
+  
     await this.email.fill(email);
+  
     await this.signupBtn.click();
   }
 }

@@ -7,8 +7,13 @@ export class LoginPage {
   }
 
   async login(email, password) {
+    await this.page.waitForLoadState('networkidle');
+  
+    await this.email.waitFor({ state: 'visible' });
     await this.email.fill(email);
+  
     await this.password.fill(password);
+  
     await this.loginBtn.click();
   }
 }
