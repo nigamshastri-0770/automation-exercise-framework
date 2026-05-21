@@ -8,7 +8,7 @@ export default defineConfig({
   use: {
     browserName: 'chromium',
     channel: 'chrome',
-    headless: false,
+    headless: true,
     baseURL: 'https://automationexercise.com',
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure'
