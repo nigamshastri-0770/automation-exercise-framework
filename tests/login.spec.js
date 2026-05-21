@@ -1,12 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test('Login flow', async ({ page }) => {
-  await page.goto('https://automationexercise.com/login', {
-    waitUntil: 'domcontentloaded'
-  });
+  await page.goto('https://automationexercise.com/login');
 
-  await page.locator('input[type="email"]').first().fill('test@test.com');
-  await page.locator('input[type="password"]').fill('password');
+  await page.fill('input[data-qa="login-email"]', 'nigam.shastri@project-kiwiqa.com');
 
-  await page.locator('button[data-qa="login-button"]').click();
+  await page.fill('input[data-qa="login-password"]', 'r5gqwa97');
+
+  await page.click('button[data-qa="login-button"]');
+
+  await page.waitForTimeout(5000);
 });

@@ -1,14 +1,13 @@
-import { defineConfig } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-export default defineConfig({
-  timeout: 60000,
-  fullyParallel: false,
-  workers: 1,
+test('Signup flow', async ({ page }) => {
+  await page.goto('https://automationexercise.com/login', {
+    waitUntil: 'domcontentloaded'
+  });
 
-  use: {
-    baseURL: 'https://automationexercise.com',
-    headless: true,
-    ignoreHTTPSErrors: true,
-    screenshot: 'only-on-failure'
-  }
+  await page.locator('input[data-qa="signup-name"]').fill('Test User');
+
+  await page.locator('input[data-qa="signup-email"]').fill('test123@test.com');
+
+  await page.locator('button[data-qa="signup-button"]').click();
 });
