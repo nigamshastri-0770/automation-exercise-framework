@@ -6,8 +6,6 @@ export default defineConfig({
   workers: 1,
 
   use: {
-    browserName: 'chromium',
-    channel: 'chrome',
     headless: true,
     baseURL: 'https://automationexercise.com',
     ignoreHTTPSErrors: true,
