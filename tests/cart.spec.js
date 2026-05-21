@@ -1,7 +1,13 @@
-import { test } from '@playwright/test';
-import { CartPage } from '../pages/CartPage.js';
+import { test, expect } from '@playwright/test';
+
+import { CartPage } from '../pages/CartPage';
 
 test('Cart page open', async ({ page }) => {
-  const cart = new CartPage(page);
-  await cart.open();
+
+  const cartPage = new CartPage(page);
+
+  await cartPage.open();
+
+  await expect(page).toHaveURL(/view_cart/);
+
 });
