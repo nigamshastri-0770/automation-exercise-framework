@@ -4,32 +4,40 @@ export default defineConfig({
 
   testDir: './tests',
 
-  timeout: 120000,
-
-  expect: {
-    timeout: 60000
-  },
+  timeout: 30000,
 
   retries: 1,
 
-  workers: 1,
+  fullyParallel: false,
 
-  reporter: 'html',
+  reporter: [
+    ['list'],
+    ['html']
+  ],
 
   use: {
 
-    baseURL: 'https://automationexercise.com',
+    browserName: 'chromium',
 
-    headless: true,
+    // Uses local Chrome browser
+    channel: 'chrome',
 
-    actionTimeout: 30000,
+    headless: false,
 
-    navigationTimeout: 120000,
+    viewport: {
+      width: 1280,
+      height: 720
+    },
 
     screenshot: 'only-on-failure',
 
-    video: 'retain-on-failure',
+    trace: 'on-first-retry',
 
-    trace: 'on-first-retry'
+    // DISABLE VIDEO
+    video: 'off',
+
+    launchOptions: {
+      slowMo: 300
+    }
   }
 });

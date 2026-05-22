@@ -1,12 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-import { CartPage } from '../pages/CartPage';
-
 test('Cart page open', async ({ page }) => {
 
-  const cartPage = new CartPage(page);
-
-  await cartPage.open();
+  await page.goto('https://automationexercise.com/view_cart');
 
   await expect(page).toHaveURL(/view_cart/);
 

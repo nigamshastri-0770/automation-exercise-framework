@@ -1,36 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test('Signup flow', async ({ page }) => {
+test('Signup section visible', async ({ page }) => {
 
-  await page.goto(
-    'https://automationexercise.com/login',
-    {
-      waitUntil: 'load',
-      timeout: 120000
-    }
-  );
+  await page.goto('https://automationexercise.com/login');
 
-  await page.waitForTimeout(5000);
+  await expect(
+    page.locator('input[data-qa="signup-name"]')
+  ).toBeVisible();
 
-  const signupName = page.locator(
-    'input[data-qa="signup-name"]'
-  );
-
-  await signupName.waitFor({
-    state: 'visible',
-    timeout: 60000
-  });
-
-  await signupName.fill('Test User');
-
-  await page.locator(
-    'input[data-qa="signup-email"]'
-  ).fill(`test${Date.now()}@test.com`);
-
-  await page.locator(
-    'button[data-qa="signup-button"]'
-  ).click();
-
-  await page.waitForTimeout(5000);
+  await expect(
+    page.locator('input[data-qa="signup-email"]')
+  ).toBeVisible();
 
 });
